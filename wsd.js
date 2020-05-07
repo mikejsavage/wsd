@@ -21,7 +21,7 @@ server.on( "connection", function( src ) {
 	dest.on( "error", () => src.close() );
 
 	dest.on( "connect", function() {
-		src.on( "message", data => dest.write( data ) );
+		src.on( "message", data => dest.write( data, "binary" ) );
 		dest.on( "data", data => src.send( data.toString( "binary" ) ) );
 	} );
 } );
